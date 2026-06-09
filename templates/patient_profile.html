@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Patient Profile</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/patient.css') }}">
+</head>
+<body class="app-body role-outpatient">
+  <div class="app-shell">
+    <aside class="sidebar card">
+      <a class="brand" href="{{ request.path }}">
+        <span class="brand-mark">🩺</span>
+        <span><strong>Patient Portal</strong><small>{{ usertype|replace('_', ' ')|title }}</small></span>
+      </a>
+      {% if role_nav_links %}
+      <nav class="side-nav" aria-label="Patient navigation">
+        {% for label, href in role_nav_links %}
+        <a class="{{ 'active' if href == request.path else '' }}" href="{{ href }}"><span>{{ label }}</span><span class="chevron">›</span></a>
+        {% endfor %}
+      </nav>
+      {% endif %}
+      <form method="post" action="{{ url_for('patient_002.logout_ui') }}" class="sidebar-logout">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button class="secondary full-width" type="submit">Sign out</button>
+      </form>
+    </aside>
+
+    <main class="workspace">
+      <section class="page-hero card">
+        <div class="hero-copy">
+          <p class="eyebrow">Profile management</p>
+          <h1>Patient Profile</h1>
+          <p>Review and update the contact details tied to the active patient session.</p>
+        </div>
+      </section>
+
+      {% if message %}<section class="notice success" role="status"><strong>{{ message }}</strong></section>{% endif %}
+
+      <section class="action-grid two-column">
+        <form class="card action-card" method="post">
+          <div class="section-heading compact">
+            <div><p class="eyebrow">Patient action</p><h2>Update contact details</h2></div>
+          </div>
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <label for="profile_user_id">User ID</label>
+          <input id="profile_user_id" value="{{ profile.user_id }}" disabled>
+          <label for="display_name">Display name</label>
+          <input id="display_name" name="display_name" value="{{ profile.display_name }}" required>
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" value="{{ profile.phone }}" required>
+          <button type="submit">Save profile</button>
+        </form>
+
+        <section class="card profile-card">
+          <div class="section-heading compact">
+            <div><p class="eyebrow">Current data</p><h2>Account snapshot</h2></div>
+          </div>
+          <div class="detail-list">
+            <div><span>User ID</span><strong>{{ profile.user_id }}</strong></div>
+            <div><span>Name</span><strong>{{ profile.display_name }}</strong></div>
+            <div><span>Phone</span><strong>{{ profile.phone }}</strong></div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
