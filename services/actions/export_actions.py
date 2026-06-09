@@ -1,6 +1,5 @@
 import json
 import time
-from pathlib import Path
 from threading import Thread
 
 from core.contracts import ActionResult, ActionService

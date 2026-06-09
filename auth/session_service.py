@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from functools import wraps
 
 import jwt
-from flask import request, jsonify, g, session, redirect, url_for
+from flask import request, g, session, redirect, url_for
 from werkzeug.security import check_password_hash
 
 from shared.constants import (

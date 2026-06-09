@@ -3,7 +3,6 @@ from core.contracts import Repository
 from db import database as db
 
 import time
-from pathlib import Path
 from shared.constants import AUDIT_LOG_FILE
 
 

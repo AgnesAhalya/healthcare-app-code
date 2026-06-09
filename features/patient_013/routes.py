@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, render_template, redirect, url_for
+from flask import Blueprint, request, render_template, redirect, url_for
 
 from db.database import create_patient_user
 from shared.rate_limiter import limiter
