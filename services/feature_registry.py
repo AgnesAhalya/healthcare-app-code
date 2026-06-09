@@ -119,7 +119,7 @@ def _build_ui(
     }
 
 
-def run_feature(feature_id: str):
+def run_feature(feature_id: str,action: Any = None):
     config = get_feature_config(feature_id)
 
     if config is None:
@@ -129,10 +129,11 @@ def run_feature(feature_id: str):
     result = None
     actor = getattr(g, "current_session", None)
 
-    if request.method == "POST" and config.action_factory:
-        action_name = request.form.get("action") or "default"
-        action = config.action_factory(action_name)
-
+    if request.method == "POST":
+        if (action is None) and config.action_factory:
+            action_name = request.form.get("action") or "default"
+            action = config.action_factory(action_name)
+            
         if action is None:
             abort(400)
 
@@ -157,3 +158,4 @@ def run_feature(feature_id: str):
         data=data,
         ui=_build_ui(config, data, actor),
     )
+

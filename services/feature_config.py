@@ -109,7 +109,6 @@ from services.feature_actions import (
     get_billing_005_action,
     get_billing_002_action,
     get_billing_001_action,
-    get_billing_006_action,
     get_billing_007_action,
     get_doctor_002_action,
     get_doctor_001_action,
@@ -128,7 +127,6 @@ from services.feature_actions import (
     get_auditor_003_action,
     get_auditor_004_action,
     get_auditor_005_action,
-    get_auditor_002_action,
     get_external_001_action,
 )
 
@@ -619,7 +617,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Billing Report",
             "billing_staff",
             "Run billing status reports over invoices and patients.",
-            action_factory=get_billing_006_action,
             readers={"bills": AllBillReader()},
             forms=[
                 form(
@@ -1208,7 +1205,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "API Key Storage",
             "security_auditor",
             "Store a monitoring API key for the audit connector.",
-            action_factory=get_auditor_002_action,
             readers={"entries": ConfigListReader()},
             forms=[
                 form(
