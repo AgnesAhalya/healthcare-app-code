@@ -53,219 +53,154 @@ from services.actions.extended_actions import (
 )
 
 
-def get_patient_001_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return AppointmentCreateAction()
-    return None
+def get_patient_001_action() -> ActionService:
+    return AppointmentCreateAction()
 
 
-def get_patient_012_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return PatientRecordUploadAction()
-    return None
+def get_patient_012_action() -> ActionService:
+    return PatientRecordUploadAction()
 
 
-def get_patient_010_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return RecordDownloadAction()
-    return None
+def get_patient_010_action() -> ActionService:
+    return RecordDownloadAction()
 
 
-def get_patient_011_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return SRecordDownloadAction()
-    return None
+def get_patient_011_action() -> ActionService:
+    return SRecordDownloadAction()
 
 
-def get_patient_009_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return DSearchAction()
-    return None
+def get_patient_009_action() -> ActionService:
+    return DSearchAction()
 
 
-def get_patient_006_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return PatientBillPayAction()
-    return None
+def get_patient_006_action() -> ActionService:
+    return PatientBillPayAction()
 
 
-def get_patient_003_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return ClientAmountPaymentAction()
-    return None
+def get_patient_003_action() -> ActionService:
+    return ClientAmountPaymentAction()
 
 
-def get_patient_005_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return I2yPaymentAction()
-    return None
+def get_patient_005_action() -> ActionService:
+    return I2yPaymentAction()
 
 
-def get_patient_004_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return C2fPaymentAction()
-    return None
+def get_patient_004_action() -> ActionService:
+    return C2fPaymentAction()
 
 
-def get_billing_003_action(action_key: str = "default") -> ActionService | None:
-    return None
+def get_billing_004_action() -> ActionService:
+    return C2ePaymentAction()
 
 
-def get_billing_004_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return C2ePaymentAction()
-    return None
+def get_billing_005_action() -> ActionService:
+    return ExternalPaymentAction()
 
 
-def get_billing_005_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return ExternalPaymentAction()
-    return None
+def get_billing_002_action() -> ActionService:
+    return InvoiceParseAction()
 
 
-def get_billing_002_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return InvoiceParseAction()
-    return None
+def get_billing_001_action() -> ActionService:
+    return InvoiceB2nAction()
 
 
-def get_billing_001_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return InvoiceB2nAction()
-    return None
+def get_billing_006_action() -> ActionService:
+    return ReportQueryAction()
 
 
-def get_billing_006_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return ReportQueryAction()
-    return None
+def get_billing_007_action() -> ActionService:
+    return XmlReportAction()
 
 
-def get_billing_007_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return XmlReportAction()
-    return None
+def get_doctor_002_action() -> ActionService:
+    return EmployeeRecordUpdateAction()
 
 
-def get_doctor_002_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return EmployeeRecordUpdateAction()
-    return None
+def get_doctor_001_action() -> ActionService:
+    return DoctorAppointmentAction()
 
 
-def get_doctor_001_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return DoctorAppointmentAction()
-    return None
+def get_doctor_004_action() -> ActionService:
+    return DoctorNoteCreateAction()
 
 
-def get_doctor_004_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return DoctorNoteCreateAction()
-    return None
+def get_doctor_003_action() -> ActionService:
+    return DoctorNoteCreateAction()
 
 
-def get_doctor_003_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return DoctorNoteCreateAction()
-    return None
-
-
-def get_role_manager_001_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return RoleSyncAction()
-    return None
+def get_role_manager_001_action() -> ActionService:
+    return RoleSyncAction()
 
 
 def get_role_manager_003_action(action_key: str = "default") -> ActionService | None:
     if action_key == "default":
         return ConfigFileReadAction()
-    elif action_key == "append":
+
+    if action_key == "append":
         return ConfigFileAppendAction()
+
     return None
 
 
-def get_role_manager_004_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return UserExportAction()
-    return None
+def get_role_manager_004_action() -> ActionService:
+    return UserExportAction()
 
 
 def get_role_manager_005_action(action_key: str = "default") -> ActionService | None:
     if action_key == "default":
         return SupportSessionAction()
-    elif action_key == "lookup":
+
+    if action_key == "lookup":
         return SessionLookupAction()
+
     return None
 
 
-def get_maintainer_006_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return TemplatePreviewAction()
-    return None
+def get_maintainer_006_action() -> ActionService:
+    return TemplatePreviewAction()
 
 
-def get_maintainer_005_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return RulePreviewAction()
-    return None
+def get_maintainer_005_action() -> ActionService:
+    return RulePreviewAction()
 
 
-def get_maintainer_004_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return BannerCreateAction()
-    return None
+def get_maintainer_004_action() -> ActionService:
+    return BannerCreateAction()
 
 
-def get_maintainer_003_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return BannerPreviewAction()
-    return None
+def get_maintainer_003_action() -> ActionService:
+    return BannerPreviewAction()
 
 
-def get_maintainer_001_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return BackupRestoreAction()
-    return None
+def get_maintainer_001_action() -> ActionService:
+    return BackupRestoreAction()
 
 
 def get_maintainer_002_action(action_key: str = "default") -> ActionService | None:
     if action_key == "default":
         return BackupMetadataAction()
-    elif action_key == "save":
+
+    if action_key == "save":
         return BackupSaveAction()
+
     return None
 
 
-def get_auditor_003_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return AuditCreateAction()
-    return None
+def get_auditor_003_action() -> ActionService:
+    return AuditCreateAction()
 
 
-def get_auditor_004_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return LogWriteAction()
-    return None
+def get_auditor_004_action() -> ActionService:
+    return LogWriteAction()
 
 
-def get_auditor_005_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return M2gAuditAction()
-    return None
+def get_auditor_005_action() -> ActionService:
+    return M2gAuditAction()
+
+def get_auditor_002_action() -> ActionService:
+    return ApiKeyStorageAction()
 
 
-def get_auditor_001_action(action_key: str = "default") -> ActionService | None:
-    return None
-
-
-def get_auditor_002_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return ApiKeyStorageAction()
-    return None
-
-
-def get_external_001_action(action_key: str = "default") -> ActionService | None:
-    if action_key == "default":
-        return ExternalInsuranceStatusAction()
-    return None
+def get_external_001_action() -> ActionService:
+    return ExternalInsuranceStatusAction()

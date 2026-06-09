@@ -95,40 +95,7 @@ from services.readers import (
     ConfigFileReader,
 )
 
-from services.feature_actions import (
-    get_patient_001_action,
-    get_patient_012_action,
-    get_patient_010_action,
-    get_patient_011_action,
-    get_patient_009_action,
-    get_patient_006_action,
-    get_patient_003_action,
-    get_patient_005_action,
-    get_patient_004_action,
-    get_billing_004_action,
-    get_billing_005_action,
-    get_billing_002_action,
-    get_billing_001_action,
-    get_billing_007_action,
-    get_doctor_002_action,
-    get_doctor_001_action,
-    get_doctor_004_action,
-    get_doctor_003_action,
-    get_role_manager_001_action,
-    get_role_manager_003_action,
-    get_role_manager_004_action,
-    get_role_manager_005_action,
-    get_maintainer_006_action,
-    get_maintainer_005_action,
-    get_maintainer_004_action,
-    get_maintainer_003_action,
-    get_maintainer_001_action,
-    get_maintainer_002_action,
-    get_auditor_003_action,
-    get_auditor_004_action,
-    get_auditor_005_action,
-    get_external_001_action,
-)
+
 
 def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
     if feature_key == "patient_001":
@@ -137,7 +104,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Appointment Schedule",
             "outpatient",
             "Schedule outpatient appointments and view submitted requests.",
-            action_factory=get_patient_001_action,
             readers={"appointments": PatientAppointmentReader()},
             forms=[
                 form(
@@ -170,7 +136,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Record Upload",
             "outpatient",
             "Upload a medical record and see the stored record list.",
-            action_factory=get_patient_012_action,
             readers={"records": PatientRecordReader()},
             forms=[
                 form(
@@ -200,7 +165,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Record Download",
             "outpatient",
             "Download a record by stored file name.",
-            action_factory=get_patient_010_action,
             readers={"records": PatientRecordReader()},
             forms=[
                 form(
@@ -235,7 +199,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Record Viewer",
             "outpatient",
             "View records owned by the current outpatient user.",
-            action_factory=get_patient_011_action,
             readers={"records": PatientRecordReader()},
             forms=[
                 form(
@@ -263,7 +226,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Record Summary",
             "outpatient",
             "Search medical record summaries across the portal.",
-            action_factory=get_patient_009_action,
             readers={"records": LimitedRecordsReader()},
             forms=[
                 form(
@@ -292,7 +254,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Bill Payment",
             "outpatient",
             "Pay outstanding bills and return to a destination after payment.",
-            action_factory=get_patient_006_action,
             readers={"bills": PatientBillReader()},
             forms=[
                 form(
@@ -331,7 +292,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Payment Amount",
             "outpatient",
             "Submit the amount displayed by the patient-side payment page.",
-            action_factory=get_patient_003_action,
             readers={"bills": PatientBillReader(), "payments": PaymentHistoryReader()},
             forms=[
                 form(
@@ -381,7 +341,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Payment Proof",
             "outpatient",
             "Attach proof metadata to a payment confirmation.",
-            action_factory=get_patient_005_action,
             readers={"bills": PatientBillReader(), "payments": PaymentHistoryReader()},
             forms=[
                 form(
@@ -421,7 +380,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Payment Confirm",
             "outpatient",
             "Confirm an open patient bill from a compact payment form.",
-            action_factory=get_patient_004_action,
             readers={"bills": PatientBillReader()},
             forms=[
                 form(
@@ -479,7 +437,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Payment Entry",
             "billing_staff",
             "Create a payment entry for a patient bill.",
-            action_factory=get_billing_004_action,
             readers={"bills": AllBillReader(), "payments": PaymentEntryReader()},
             forms=[
                 form(
@@ -531,7 +488,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "External Payment",
             "billing_staff",
             "Prepare a payment processor URL for an external billing partner.",
-            action_factory=get_billing_005_action,
             readers={"bills": AllBillReader()},
             forms=[
                 form(
@@ -570,7 +526,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Invoice",
             "billing_staff",
             "Parse an uploaded invoice document and show its root element.",
-            action_factory=get_billing_002_action,
             forms=[
                 form(
                     "Parse invoice",
@@ -594,7 +549,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Invoice Parser",
             "billing_staff",
             "Parse a full invoice payload for export validation.",
-            action_factory=get_billing_001_action,
             forms=[
                 form(
                     "Parse invoice document",
@@ -652,7 +606,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Alternate Report",
             "billing_staff",
             "Run an XML path filter over billing export data.",
-            action_factory=get_billing_007_action,
             forms=[
                 form(
                     "Run path",
@@ -668,7 +621,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Employee Record",
             "doctor_nurse",
             "View and update the logged-in clinician employee record.",
-            action_factory=get_doctor_002_action,
             readers={"record": EmployeeRecordReader()},
             forms=[
                 form(
@@ -696,7 +648,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Appointment Viewer",
             "doctor_nurse",
             "View patient appointments assigned to the clinical team.",
-            action_factory=get_doctor_001_action,
             readers={
                 "appointments": DoctorAppointmentReader(),
                 "patients": PatientListReader(),
@@ -729,7 +680,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Doctor Notes",
             "doctor_nurse",
             "Create and review clinical notes for patient care.",
-            action_factory=get_doctor_004_action,
             readers={"patients": PatientListReader(), "notes": DoctorNoteReader()},
             forms=[
                 form(
@@ -767,7 +717,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Shared Notes",
             "doctor_nurse",
             "Add a shared note for a patient through a lightweight clinical form.",
-            action_factory=get_doctor_003_action,
             readers={"patients": PatientListReader(), "notes": DoctorNoteReader()},
             forms=[
                 form(
@@ -806,7 +755,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Role Management",
             "role_manager",
             "View and update employee role assignments.",
-            action_factory=get_role_manager_001_action,
             readers={"roles": RoleListReader()},
             forms=[
                 form(
@@ -837,7 +785,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Config Files",
             "role_manager",
             "Read and update hospital configuration files.",
-            action_factory=get_role_manager_003_action,
             readers={"files": ConfigFileReader()},
             forms=[
                 form(
@@ -873,7 +820,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "User Export",
             "role_manager",
             "Export user and role records for administrative review.",
-            action_factory=get_role_manager_004_action,
             readers={"users": UserListReader(), "roles": RoleListReader()},
             forms=[form("Generate export", [], submit="Generate export")],
             tables=[
@@ -905,7 +851,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Support Session",
             "role_manager",
             "Attach a support session identifier before completing role support.",
-            action_factory=get_role_manager_005_action,
             readers={"roles": RoleListReader()},
             forms=[
                 form(
@@ -938,7 +883,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Awareness Page",
             "maintainer",
             "Preview a health awareness page before publishing.",
-            action_factory=get_maintainer_006_action,
             readers={"banners": BannerListReader()},
             forms=[
                 form(
@@ -972,7 +916,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Rule Tester",
             "maintainer",
             "Evaluate a small health promotion rule before it goes live.",
-            action_factory=get_maintainer_005_action,
             forms=[
                 form(
                     "Evaluate rule",
@@ -988,7 +931,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Banner Publish",
             "maintainer",
             "Publish hospital awareness banners shown on the site.",
-            action_factory=get_maintainer_004_action,
             readers={"banners": BannerListReader()},
             forms=[
                 form(
@@ -1013,7 +955,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Banner Preview",
             "maintainer",
             "Preview banner content with output encoding before publishing.",
-            action_factory=get_maintainer_003_action,
             readers={"banners": BannerListReader()},
             forms=[
                 form(
@@ -1047,7 +988,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Backup Restore",
             "maintainer",
             "Restore a maintenance backup file into the content store.",
-            action_factory=get_maintainer_001_action,
             forms=[
                 form(
                     "Restore backup",
@@ -1064,7 +1004,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Backup Metadata",
             "maintainer",
             "Apply metadata from a backup manifest to the site configuration.",
-            action_factory=get_maintainer_002_action,
             readers={"entries": ConfigListReader()},
             forms=[
                 form(
@@ -1104,7 +1043,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Audit Collection",
             "security_auditor",
             "Collect anonymized audit subjects for privacy-preserving review.",
-            action_factory=get_auditor_003_action,
             readers={"events": AuditListReader()},
             forms=[
                 form(
@@ -1135,7 +1073,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Log Monitor",
             "security_auditor",
             "Record raw monitoring notes for audit follow-up.",
-            action_factory=get_auditor_004_action,
             readers={"events": AuditListReader()},
             forms=[
                 form(
@@ -1162,7 +1099,6 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Audit Review",
             "security_auditor",
             "Review a sensitive event and compare it with existing audit entries.",
-            action_factory=get_auditor_005_action,
             readers={"events": AuditListReader()},
             forms=[
                 form(
@@ -1231,7 +1167,7 @@ def get_feature_config(feature_key: str = "") -> FeatureConfig | None:
             "Insurance Payment Status",
             "external_user",
             "Update customer insurance payment status from the insurance portal.",
-            action_factory=get_external_001_action,
+
             readers={"records": ExternalRecordWideReader()},
             forms=[
                 form(

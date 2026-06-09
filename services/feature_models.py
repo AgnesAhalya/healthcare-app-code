@@ -3,8 +3,6 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from core.contracts import ActionService
-
 
 @dataclass(frozen=True)
 class Field:
@@ -43,7 +41,6 @@ class FeatureConfig:
     title: str
     role: str
     description: str
-    action_factory: Callable[[str], ActionService | None] | None = None
     readers: dict[str, Any] = field(default_factory=dict)
     forms: list[FormSpec] = field(default_factory=list)
     tables: list[TableSpec] = field(default_factory=list)
