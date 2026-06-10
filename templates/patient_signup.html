@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Outpatient Registration</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/patient.css') }}">
+</head>
+<body class="auth-body">
+  <main class="auth-layout single-auth">
+    <section class="auth-panel card">
+      <p class="eyebrow">Outpatient intake</p>
+      <h1>Create an outpatient account</h1>
+      <p class="auth-lede">Registration creates a patient profile and an initial billing record, so the new account can immediately use the healthcare workflows.</p>
+    </section>
+
+    <section class="card auth-card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Patient details</p>
+          <h2>Registration form</h2>
+        </div>
+      </div>
+      <form class="stacked-form" method="post" id="signupForm">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <label for="username">Username</label>
+        <input id="username" name="username" required autocomplete="username">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required autocomplete="new-password">
+        <label for="display_name">Display name</label>
+        <input id="display_name" name="display_name" required>
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" required inputmode="tel">
+        <button type="submit">Create outpatient account</button>
+        {% if error %}<p class="notice error">{{ error }}</p>{% endif %}
+      </form>
+      <p class="hint"><a href="{{ url_for('patient_002.login_page') }}">Back to login</a></p>
+    </section>
+  </main>
+</body>
+</html>
